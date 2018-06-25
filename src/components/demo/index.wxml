@@ -1,0 +1,7 @@
+<!-- 
+  @fileOverview Demo 组件模板
+  @author sizhao | 870301137@qq.com
+  @version 1.0.0 | 2018-06-25 | sizhao   // 初始版本
+ -->
+
+ <view class="demo">Hello, {{name}}! This is Demo Component.</view>

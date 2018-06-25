@@ -1,0 +1,11 @@
+appId: ''
+appName: ''
+version: ''
+development:
+  env: 'development'
+test:
+  env: 'test'
+preproduction:
+  env: 'preproduction'
+production:
+  env: 'production'
