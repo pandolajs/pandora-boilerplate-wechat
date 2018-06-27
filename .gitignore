@@ -1,4 +1,10 @@
+.DS_Store
 .idea
-node_modules/
+build
+coverage
+node_modules
+npm-debug.log
+yarn-error.log
 .vscode
-dist/
+yarn.lock
+dist

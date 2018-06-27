@@ -6,4 +6,5 @@
 
 export const sayHello = () => {
   console.log('Hello, Pandolajs!')
+  return '你好'
 }

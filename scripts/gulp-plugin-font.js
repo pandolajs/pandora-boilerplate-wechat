@@ -104,6 +104,11 @@ module.exports = function (options) {
     })
     base64Str = `data:${mime.getType('ttf')};base64,${base64Str}`
     const destPath = path.join(cwd, dest, `${fontName}.wxss`)
+    if (!fs.existsSync(destPath)) {
+      try {
+        fs.mkdirSync(path.dirname(destPath))
+      } catch (error) {}
+    }
     const targetStream = fs.createWriteStream(destPath)
     targetStream.write(template(fontFace, {
       fontFamilyName,

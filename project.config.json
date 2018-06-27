@@ -1,0 +1,53 @@
+{
+	"description": "Pandorajs wechat miniprogram boilplate.",
+	"packOptions": {
+		"ignore": [
+			{
+				"value": "README.md",
+				"type": "file"
+			},
+			{
+				"value": "mock",
+				"type": "folder"
+			}
+		]
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.1.1",
+	"appid": "wxf52540f35d943aea",
+	"projectname": "pandora-boilerplate-wechat",
+	"svr": "",
+	"client": "",
+	"qcloudRoot": "",
+	"miniprogramRoot": "./dist",
+	"pluginRoot": "",
+	"scripts": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": []
+		}
+	}
+}

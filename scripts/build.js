@@ -62,8 +62,7 @@ gulp.task('build:js:alias', (callback) => {
   gulp.src('src/**/*.js', { base: 'src' })
     .pipe(alias(buildConfig.alias))
     .pipe(npm({
-      dest: 'dist',
-      mainField: buildConfig.mainField
+      dest: 'dist'
     }))
     .pipe(gulp.dest('dist'))
   
