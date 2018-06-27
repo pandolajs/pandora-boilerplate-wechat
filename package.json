@@ -4,7 +4,7 @@
   "description": "wechat mini program boilerplate.",
   "main": "index.js",
   "scripts": {
-    "build:gulp": "gulp --gulpfile ./scripts/build.js --cwd .",
+    "build:gulp": "gulp --gulpfile ./scripts/gulpfile.js --cwd .",
     "start": "cross-env NODE_ENV=development npm run build:gulp",
     "build:test": "cross-env NODE_ENV=test npm run build:gulp",
     "build:pre": "cross-env NODE_ENV=preproduction npm run build:gulp",
@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/pandolajs/pandora-boilerplate-wechat#readme",
   "devDependencies": {
+    "chalk": "^2.4.1",
     "cross-env": "^5.2.0",
     "del": "^3.0.0",
     "dependency-tree": "^6.1.0",
