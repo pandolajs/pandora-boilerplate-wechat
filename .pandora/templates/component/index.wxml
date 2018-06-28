@@ -1,7 +1,7 @@
 <!-- 
-  @fileOverview {Description}
-  @author {User} | {Email}
-  @version 1.0.0 | {Date} | {User}   // 初始版本
+  @fileOverview @{Description}
+  @author @{User} | @{Email}
+  @version 1.0.0 | @{Date} | @{User}   // 初始版本
  -->
 
  <view class="demo">Hello, {{name}}! This is Demo Component.</view>
