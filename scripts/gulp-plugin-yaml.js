@@ -1,7 +1,7 @@
 /**
  * @fileOverview 处理配置文件的插件
- * @author houquan | houquan@babytree-inc.com
- * @version 1.0.0 | 2018-06-14 | houquan
+ * @author sizhao | 870301137@qq.com
+ * @version 1.0.0 | 2018-06-14 | sizhao
 */
 
 const through = require('through2')
@@ -10,7 +10,7 @@ const yamlLoader = require('js-yaml')
 const headerCommentTemplate = `/**
  * MUST NOT MODIFY THE FILE!!!!!!
  * @fileOverview 构建生成的配置文件，切勿自动修改，若有需求，请修改 /config/app.yaml 中的配置
- * @author houquan | houquan@babytree-inc.com
+ * @author sizhao | 870301137@qq.com
  * @version 1.0.0 | {year}-{month}-{day}
 */
 `
