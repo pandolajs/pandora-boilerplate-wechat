@@ -94,6 +94,7 @@
 ### 单独使用
 
 - 初始化
+
 ```
   // 克隆代码库
   git clone https://github.com/pandolajs/pandora-boilerplate-wechat.git
