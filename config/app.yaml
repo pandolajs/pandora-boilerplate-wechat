@@ -1,6 +1,6 @@
-appId: ''
-appName: ''
-version: ''
+appId: '@{AppId}'
+appName: '@{ProjectName}'
+version: '1.0.0'
 development:
   env: 'development'
 test:
