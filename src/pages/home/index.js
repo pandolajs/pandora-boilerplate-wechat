@@ -4,7 +4,7 @@
  * @version 1.0.0 | 2018-06-25 | sizhao
 */
 
-import { sayHello } from '../../utils/index'
+import { sayHello } from 'util/index'
 
 Page({
   async onLoad () {
