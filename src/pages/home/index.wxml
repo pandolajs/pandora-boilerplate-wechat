@@ -6,4 +6,8 @@
 
  <view class="home">
    Hello, Pandolajs!
+
+   <view class="panel" data-title="字体图标">
+     <text class="icon-font icon-font_wechat wechat"></text>
+   </view>
  </view>
