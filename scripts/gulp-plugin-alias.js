@@ -15,14 +15,14 @@ module.exports = function (alias = {}) {
     const aliasNames = Object.keys(alias)
     if (aliasNames.length > 0) {
       const aliasStr = aliasNames.join('|')
-      const importReg = new RegExp(`import\\s*\\{?\\s*[\\w_-]*\\s*\\}?\\s*from\\s*['"](${aliasStr})(?:\\/[\\w_-]+)*['"]`, 'ig')
+      const importReg = new RegExp(`import\\s*\\{?\\s*[\\w_-]*\\s*\\}?\\s*from\\s*['"](${aliasStr})(?:\\/[\\w_.-]+)*['"]`, 'ig')
       let codeStr = file.contents.toString()
       const cwd = file.cwd
       codeStr = codeStr.replace(importReg, (m, key) => {
         const aliasPath = path.resolve(cwd, alias[key])
         let aliasRelative = path.relative(path.dirname(file.path), aliasPath)
         aliasRelative = /^\./.test(aliasRelative) ? aliasRelative : `./${aliasRelative}`
-        const moduleReg = new RegExp(`(from\\s*(['"]))${key}(?=(?:\\/[\\w_-]+)*\\2)`)
+        const moduleReg = new RegExp(`(from\\s*(['"]))${key}(?=(?:\\/[\\w_.-]+)*\\2)`)
         return m.replace(moduleReg, `$1${aliasRelative}`)
       })
       file.contents = Buffer.from(codeStr)
