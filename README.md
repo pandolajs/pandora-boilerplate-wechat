@@ -89,6 +89,20 @@
   pa c index.js
 ```
 
+- 从控制台打开小程序开发者工具
+
+```
+  pa open
+```
+
+- 从控制台发布小程序
+
+```
+  pa release patch -m 'some comments.'
+```
+
+> 注意：使用 release 发布的时候不需要手动输入版本号，采用和 npm 相同机制的语义化版本管理。
+
 更多命令使用可以参照 [pandora-cli](https://github.com/pandolajs/pandora-cli)
 
 ### 单独使用
