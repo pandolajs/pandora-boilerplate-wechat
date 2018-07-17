@@ -17,12 +17,12 @@ function color (chunk) {
   })
 }
 
-module.exports = env => {
+module.exports = ({ argvs: { env } }) => {
   const npmCmd = {
-    development: 'start',
+    dev: 'start',
     test: 'build:test',
-    preproduction: 'build:pre',
-    production: 'build:prod'
+    pre: 'build:pre',
+    prod: 'build:prod'
   }
 
   const cp = spawn('npm', ['run', npmCmd[env]])
