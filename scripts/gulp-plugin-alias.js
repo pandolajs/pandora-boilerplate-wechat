@@ -15,7 +15,7 @@ module.exports = function (alias = {}) {
     const aliasNames = Object.keys(alias)
     if (aliasNames.length > 0) {
       const aliasStr = aliasNames.join('|')
-      const importReg = new RegExp(`import\\s*\\{?\\s*[\\w_-]*\\s*\\}?\\s*from\\s*['"](${aliasStr})(?:\\/[\\w_.-]+)*['"]`, 'ig')
+      const importReg = new RegExp(`import\\s*\\{?\\s*.*\\s*\\}?\\s*from\\s*['"](${aliasStr})(?:\\/[\\w_.-]+)*['"]`, 'ig')
       let codeStr = file.contents.toString()
       const cwd = file.cwd
       codeStr = codeStr.replace(importReg, (m, key) => {
