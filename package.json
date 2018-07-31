@@ -1,6 +1,6 @@
 {
   "name": "@pandolajs/pandora-boilerplate-wechat",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "wechat mini program boilerplate.",
   "main": "index.js",
   "scripts": {
