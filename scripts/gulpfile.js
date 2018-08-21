@@ -45,9 +45,6 @@ gulp.task('build:config', () => {
     .pipe(gulp.dest('dist'))
 })
 
-gulp.watch('config/app.yaml', ['build:config'])
-  .on('change', watchHandlerCreator('build:config'))
-
 // less 编译
 gulp.task('build:less', (done) => {
   gulp.src('src/**/*.less', { base: 'src' })
@@ -55,9 +52,6 @@ gulp.task('build:less', (done) => {
     .pipe(gulp.dest('dist'))
   done()
 })
-
-gulp.watch('src/**/*.less', ['build:less'])
-  .on('change', watchHandlerCreator('build:less'))
 
 // js alias 编译
 gulp.task('build:js:alias', () => {
@@ -72,9 +66,6 @@ gulp.task('build:js:alias', () => {
 // js 源码编译
 gulp.task('build:js', ['build:js:alias'])
 
-gulp.watch('src/**/*.js', ['build:js'])
-  .on('change', watchHandlerCreator('build:js'))
-
 // 复制 wxml, wxss, json
 gulp.task('copy', (done) => {
   gulp.src('src/**/*.@(wxml|wxss|json)', { base: 'src' })
@@ -82,18 +73,12 @@ gulp.task('copy', (done) => {
   done()
 })
 
-gulp.watch('src/**/*.@(wxml|wxss|json)', ['copy'])
-  .on('change', watchHandlerCreator('copy'))
-
 // 图片压缩处理
 gulp.task('compress:image', () => {
   gulp.src('src/images/**/*.@(png|jpg|gif)', { base: 'src' })
     .pipe(imagemin())
     .pipe(gulp.dest('dist'))
 })
-
-gulp.watch('src/images/**/*.@(png|jpg|gif)', ['compress:image'])
-  .on('change', watchHandlerCreator('compress:image'))
 
 // svg 生成 font
 gulp.task('build:font', ['copy', 'build:less'], () => {
@@ -105,8 +90,31 @@ gulp.task('build:font', ['copy', 'build:less'], () => {
     }))
 })
 
-gulp.watch('icons/*.svg', ['build:font'])
-  .on('change', watchHandlerCreator('build:font'))
+if (env === 'development') {
+  // 监听配置
+  gulp.watch('config/app.yaml', ['build:config'])
+    .on('change', watchHandlerCreator('build:config'))
+
+  // 监听 icon font 构建
+  gulp.watch('icons/*.svg', ['build:font'])
+    .on('change', watchHandlerCreator('build:font'))
+
+  // 监听图片
+  gulp.watch('src/images/**/*.@(png|jpg|gif)', ['compress:image'])
+    .on('change', watchHandlerCreator('compress:image'))
+
+  // 监听小程序其他文件变化
+  gulp.watch('src/**/*.@(wxml|wxss|json)', ['copy'])
+    .on('change', watchHandlerCreator('copy'))
+
+  // 监听 less 构建
+  gulp.watch('src/**/*.less', ['build:less'])
+    .on('change', watchHandlerCreator('build:less'))
+
+  // 监听 js 构建
+  gulp.watch('src/**/*.js', ['build:js'])
+    .on('change', watchHandlerCreator('build:js'))
+}
 
 gulp.task('default', ['clean', 'copy', 'build:config', 'build:less', 'build:font', 'build:js', 'compress:image'], () => {
   log('build successfully.')

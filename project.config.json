@@ -1,16 +1,7 @@
 {
 	"description": "Pandorajs wechat miniprogram boilplate.",
 	"packOptions": {
-		"ignore": [
-			{
-				"value": "README.md",
-				"type": "file"
-			},
-			{
-				"value": "mock",
-				"type": "folder"
-			}
-		]
+		"ignore": []
 	},
 	"setting": {
 		"urlCheck": false,
