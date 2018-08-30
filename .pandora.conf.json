@@ -1,6 +1,6 @@
 {
   "templates": {
     "page": "src/pages",
-    "component": "scr/components"
+    "component": "src/components"
   }
 }
