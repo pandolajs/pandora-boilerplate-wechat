@@ -30,6 +30,7 @@
     "cross-env": "^5.2.0",
     "del": "^3.0.0",
     "dependency-tree": "^6.1.0",
+    "glob-watcher": "^5.0.3",
     "gulp": "^3.9.1",
     "gulp-cli": "^2.0.1",
     "gulp-imagemin": "^4.1.0",

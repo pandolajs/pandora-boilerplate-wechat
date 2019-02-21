@@ -2,12 +2,14 @@
  * @fileOverview 项目构建脚本
  * @author sizhao | 870301137@qq.com
  * @version 1.0.0 | 2018-06-13 | sizhao      // 初始版本
+ * @version 1.1.0 | 2019-02-21 | sizhao      // 重写 gulp watch 方法，修复不监听新增文件的问题
 */
 
 const gulp = require('gulp')
 const chalk = require('chalk')
 const buildConfig = require('../build.config')
 const del = require('del')
+const watch = require('glob-watcher')
 const imagemin = require('gulp-imagemin')
 const yaml = require('./gulp-plugin-yaml')
 const wxss = require('./gulp-plugin-wxss')
@@ -27,9 +29,24 @@ function log (message = '') {
   console.log(`${timeStr} [Build]: ${chalk.greenBright(message)}`)
 }
 
+// 重写 watch 方法
+gulp.watch = (patterns, tasks = []) => {
+  return watch(patterns, (done) => {
+    tasks.forEach((name) => {
+      const task = gulp.tasks[name]
+      if (task) {
+        gulp.start(name)
+      } else {
+        log(`${task} is not defined`)
+      }
+    })
+    done()
+  })
+}
+
 function watchHandlerCreator (taskName) {
-  return event => {
-    log(`File ${event.path} was ${event.type}, ${taskName}...`)
+  return filePath => {
+    log(`File ${filePath} was modified, ${taskName}...`)
   }
 }
 
