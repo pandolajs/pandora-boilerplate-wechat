@@ -99,14 +99,18 @@ module.exports = {
         const stream = fs.createWriteStream(pkgPath)
         stream.end(JSON.stringify(Object.assign(pkg, {
           version
-        }), null, '  '))
+        }), null, '  '), () => {
+          this.log.info('Start push package.json into repository...')
+          push(version).then(() => {
+            this.log.success('Push change successfully.')
+          }).catch((error) => {
+            this.log.info(`Failed push to remote repository. ${error}`)
+          })
+        })
         this.log.info(`version: ${version}`)
         this.log.info(`message: ${message}`)
         this.log.success(`Release success !`)
         this.renderAscii()
-        push(version).catch(() => {
-          this.log.info(`Failed push to remote repository.`)
-        })
       } else {
         res.setEncoding('utf8')
         let chunks = []

@@ -16,8 +16,9 @@
 - [x] module alias
 - [x] icon font
 - [x] components
+- [x] CICD
 
-## WePY, Taro, mpvue 
+## WePY, Taro, mpvue
 
 以上三套框架的目标都很高远，总结起来就是一句话：“Write once, build anywhere。”
 
@@ -37,26 +38,25 @@
 
 - 项目初始初始化
 
-```
+```bash
   npm i -g pandora-cli
 
-  pa init projectname  
+  pa init projectname
 
-  // 或者对于已有项目目录 
-
+  // 或者对于已有项目目录
   pa init .
 
 ```
 
 - 进入项目目录，安装依赖
 
-```
+```bash
   npm i
 ```
 
 - 构建
 
-```
+```bash
   // 开发环境
   pa start
 
@@ -72,13 +72,13 @@
 
 - 安装组件，目前我们提供了一套小程序自定义的组件库 [pandora-ui-wechat](https://github.com/pandolajs/pandora-ui-wechat), 通过以下命令来安装组件库中的组件。自动分析依赖，安装所需组件。
 
-```
+```bash
   pa i drawer
 ```
 
 - 创建样板代码
 
-```
+```bash
   // 创建页面样板代码
   pa c page home
 
@@ -91,13 +91,13 @@
 
 - 从控制台打开小程序开发者工具
 
-```
+```bash
   pa open
 ```
 
 - 从控制台发布小程序
 
-```
+```bash
   pa release patch -m 'some comments.'
 ```
 
@@ -105,11 +105,13 @@
 
 更多命令使用可以参照 [pandora-cli](https://github.com/pandolajs/pandora-cli)
 
+> 使用该命令的时候，请先确认小程序开发者工具 `设置 -> 安全 -> 安全（服务端口）开启`，否则小程序的所有 HTTP / 命令行调用都无法使用。
+
 ### 单独使用
 
 - 初始化
 
-```
+```bash
   // 克隆代码库
   git clone https://github.com/pandolajs/pandora-boilerplate-wechat.git
 
@@ -124,7 +126,7 @@
 
 - 构建
 
-```
+```bash
   // 构建
   npm start           // dev
   npm run build:test  // test
@@ -134,14 +136,14 @@
 
 ### 目录介绍
 
-```
+```bash
 .
 ├── config
 │   └── app.yaml                  // 环境配置
 ├── dist                          // 构建后的目录
 ├── icons                         // 图标 svg, 自动构建为 icon 图标
 │   └── 0-wechat.svg
-├── mock                          // 接口 mock 
+├── mock                          // 接口 mock
 │   └── home.json
 ├── package.json
 ├── project.config.json
