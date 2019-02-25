@@ -121,7 +121,7 @@ if (env === 'development') {
     .on('change', watchHandlerCreator('compress:image'))
 
   // 监听小程序其他文件变化
-  gulp.watch('src/**/*.@(wxml|wxss|json)', ['copy'])
+  gulp.watch('src/**/*.@(wxml|wxss|json|wxs)', ['copy'])
     .on('change', watchHandlerCreator('copy'))
 
   // 监听 less 构建
