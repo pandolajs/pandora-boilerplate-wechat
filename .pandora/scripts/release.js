@@ -8,6 +8,7 @@ const fs = require('fs')
 const path = require('path')
 const http = require('http')
 const { getPort, login } = require('./utils')
+const { push } = require('./utils/git')
 
 const choices = ['patch', 'minor', 'major']
 
@@ -16,10 +17,10 @@ function updateVersion (type) {
   let pkg = require(path.join(cwd, 'package.json'))
   let { version } = pkg
   version = version.replace(/(\d+)\.(\d+)\.(\d+)/, (m, major, minor, patch) => {
-    const verObj = { 
+    const verObj = {
       get major () {
         return major
-      }, 
+      },
       set major (val) {
         major = val
         minor = 0
@@ -37,11 +38,11 @@ function updateVersion (type) {
       },
       set patch (val) {
         patch = val
-      }, 
+      },
       toString() {
         const { major, minor, patch } = this
         return `${major}.${minor}.${patch}`
-      } 
+      }
     }
     verObj[type] = ++verObj[type]
 
@@ -72,7 +73,7 @@ module.exports = {
       message: 'Please enter a update description:',
       when ({ argvs = {} }) {
         return !argvs.m
-      }, 
+      },
       validate ({ argvs = {} }, input) {
         if (!argvs.m && !input) {
           return 'You must enter a update description.'
@@ -103,6 +104,9 @@ module.exports = {
         this.log.info(`message: ${message}`)
         this.log.success(`Release success !`)
         this.renderAscii()
+        push(version).catch(() => {
+          this.log.info(`Failed push to remote repository.`)
+        })
       } else {
         res.setEncoding('utf8')
         let chunks = []
