@@ -12,7 +12,7 @@ module.exports = {
 
     await execa('git', ['add', './package.json'], opts)
     await execa('git', ['commit', '-m', `chore(release): ${version} release`], opts)
-    const { stdout } = await execa('git', ['symbolic-ref', '--short', '-q', 'HEAD'], opts)
+    const { stdout: branch } = await execa('git', ['symbolic-ref', '--short', '-q', 'HEAD'], opts)
     await execa('git', ['push', 'origin', `HEAD:${branch}`, '-f'], opts)
   }
 }

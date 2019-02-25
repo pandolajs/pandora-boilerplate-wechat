@@ -85,7 +85,7 @@ gulp.task('build:js', ['build:js:alias'])
 
 // 复制 wxml, wxss, json
 gulp.task('copy', (done) => {
-  gulp.src('src/**/*.@(wxml|wxss|json)', { base: 'src' })
+  gulp.src('src/**/*.@(wxml|wxss|json|wxs)', { base: 'src' })
     .pipe(gulp.dest('dist'))
   done()
 })
