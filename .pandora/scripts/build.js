@@ -5,7 +5,7 @@
 */
 
 const chalk = require('chalk')
-const { spawn } = require('child_process')
+const spawn = require('cross-spawn')
 
 function color (chunk) {
   return chunk.toString().replace(/\[([^\]]+)\]/g, (m, $1) => {

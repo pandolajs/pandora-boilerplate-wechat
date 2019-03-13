@@ -3,6 +3,7 @@
  * @author sizhao | 870301137@qq.com
  * @version 1.0.0 | 2018-06-14 | sizhao       // 初始版本
  * @version 1.1.0 | 2018-07-17 | sizhao       // 依赖分析默认支持混合（CJS, ES6 import）模块导入分析
+ * @version 1.1.1 | 2019-03-13 | sizhao       // windows 下 path.relative 处理
  * @description
  * 默认支持 js, json 后缀的文件
 */
@@ -14,6 +15,9 @@ const webpack = require('webpack')
 const readPkg = require('read-pkg-up')
 
 function handlerRelivePaht (relative) {
+  if (path.sep === '\\') {
+    relative = relative.split(path.sep).join('/')
+  }
   return /^\./.test(relative) ? relative : `./${relative}`
 }
 
@@ -26,7 +30,8 @@ module.exports = function (options) {
     }
     const cwd = file.cwd
     const filePath = file.path
-    const fileDistPath = path.dirname(filePath.replace(/(\/)src(?=\/)/i, `$1${dest}`))
+    const srcReg = new RegExp(`(\\${path.sep})src(?=\\${path.sep})`, 'i')
+    const fileDistPath = path.dirname(filePath.replace(srcReg, `$1${dest}`))
     let codeStr = file.contents.toString()
     const tree = dependency({
       filename: filePath,
@@ -47,7 +52,7 @@ module.exports = function (options) {
       dependencyTree[regeneratorPath] = {}
       codeStr = `import regeneratorRuntime from 'regenerator-runtime'\n${codeStr}`
     }
-    
+
     Object.keys(dependencyTree).forEach(entry => {
       const dirname = path.dirname(entry)
       const { pkg } = readPkg.sync({

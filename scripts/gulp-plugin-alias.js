@@ -2,6 +2,7 @@
  * @fileOverview 用于处理 js 自定义别名
  * @author sizhao | 870301137@qq.com
  * @version 1.0.0 | 2018-06-14 | sizhao       // 初始版本
+ * @version 1.0.1 | 2019-03-13 | sizhao       // windows 下 path.relative 处理
 */
 
 const through = require('through2')
@@ -21,6 +22,9 @@ module.exports = function (alias = {}) {
       codeStr = codeStr.replace(importReg, (m, key) => {
         const aliasPath = path.resolve(cwd, alias[key])
         let aliasRelative = path.relative(path.dirname(file.path), aliasPath)
+        if (path.sep === '\\') {
+          aliasRelative = aliasRelative.split(path.sep).join('/')
+        }
         aliasRelative = /^\./.test(aliasRelative) ? aliasRelative : `./${aliasRelative}`
         const moduleReg = new RegExp(`(from\\s*(['"]))${key}(?=(?:\\/[\\w_.-]+)*\\2)`)
         return m.replace(moduleReg, `$1${aliasRelative}`)
